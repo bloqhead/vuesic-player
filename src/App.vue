@@ -14,8 +14,11 @@ import Playlist from './components/Playlist';
 export default {
   name: 'app',
   data() {
-    return {};
+    return {
+      searchQuery: '',
+    };
   },
+  computed: {},
   components: {
     TitleBar,
     Search,

@@ -5,7 +5,7 @@
         type="search"
         class="search__field"
         placeholder="Search Your Library"
-        @keyup="prepareQuery"
+        @keyup="submitQuery"
       >
     </form>
   </div>
@@ -15,13 +15,14 @@
 export default {
   data() {
     return {
-      searchQuery: '',
+      searchQuery: null,
     };
   },
+  computed: {},
   methods: {
-    prepareQuery(event) {
-      this.$data.searchQuery = event.target.value || null;
-      console.log(this.$data.searchQuery);
+    submitQuery(event) {
+      // update the search query in the state so we can access it elsewhere
+      this.$store.commit('updateSearchQuery', event.target.value);
     },
   },
 };

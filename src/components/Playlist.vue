@@ -17,25 +17,11 @@
 
       <div class="playlist__content">
         <ul>
-          <li>
+          <li :key="index" v-for="(item, index) in this.$store.state.items">
             <ul class="playlist__item-details">
-              <li>Song Title</li>
-              <li>Artist Name</li>
-              <li>Album Title</li>
-            </ul>
-          </li>
-          <li>
-            <ul class="playlist__item-details">
-              <li>Song Title</li>
-              <li>Artist Name</li>
-              <li>Album Title</li>
-            </ul>
-          </li>
-          <li>
-            <ul class="playlist__item-details">
-              <li>Song Title</li>
-              <li>Artist Name</li>
-              <li>Album Title</li>
+              <li>{{item.title}}</li>
+              <li>{{item.artist}}</li>
+              <li>{{item.album}}</li>
             </ul>
           </li>
         </ul>
@@ -45,7 +31,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  created() {
+    this.$store.dispatch('fetchData');
+  },
+};
 </script>
 
 <style>

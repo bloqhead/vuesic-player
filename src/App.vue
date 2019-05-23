@@ -13,6 +13,9 @@ import Playlist from './components/Playlist';
 
 export default {
   name: 'app',
+  data() {
+    return {};
+  },
   components: {
     TitleBar,
     Search,

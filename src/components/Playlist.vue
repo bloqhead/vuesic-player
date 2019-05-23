@@ -1,7 +1,5 @@
 <template>
   <div class="playlist">
-    <h1>Playlist</h1>
-
     <div class="playlist__items">
       <header class="playlist__header">
         <ul>

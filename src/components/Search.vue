@@ -7,6 +7,7 @@
         placeholder="Search Your Library"
         @keyup="submitQuery"
       >
+      <p v-if="this.$store.state.searchQuery">Filtered by: {{this.$store.state.searchQuery}}</p>
     </form>
   </div>
 </template>
@@ -14,11 +15,8 @@
 <script>
 export default {
   data() {
-    return {
-      searchQuery: null,
-    };
+    return {};
   },
-  computed: {},
   methods: {
     submitQuery(event) {
       // update the search query in the state so we can access it elsewhere

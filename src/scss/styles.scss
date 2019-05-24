@@ -90,6 +90,23 @@ h6 {
     @include plain-list;
     @include column-setup;
   }
+  li {
+    padding: 0;
+  }
+  a {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+
+    &.is-active {
+      background-color: aquamarine;
+
+      &::after {
+        content: ' ✅'; // lol
+      }
+    }
+  }
 }
 
 .playlist__content {

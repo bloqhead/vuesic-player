@@ -3,18 +3,16 @@
     <div class="playlist__items">
       <header class="playlist__header">
         <ul>
-          <li>
-            <a href="#" data-attr="title">Title</a>
-          </li>
-          <li>
-            <a href="#" data-attr="artist">Artist</a>
-          </li>
-          <li>
-            <a href="#" data-attr="album">Album</a>
+          <li :key="index" v-for="(item, index) in sortTriggers">
+            <a
+              href="#"
+              :data-attr="item.slug"
+              :class="{ 'is-active': activeSortTrigger === index }"
+              @click="updateActiveSortTrigger(index)"
+            >{{item.label}}</a>
           </li>
         </ul>
       </header>
-
       <div class="playlist__content">
         <ul>
           <li :key="index" v-for="(item, index) in this.$store.state.items">
@@ -32,8 +30,32 @@
 
 <script>
 export default {
+  data() {
+    return {
+      sortTriggers: [
+        { label: 'Title', slug: 'title' },
+        { label: 'Artist', slug: 'artist' },
+        { label: 'Album', slug: 'album' },
+      ],
+      activeSortTrigger: null,
+    };
+  },
   created() {
+    // fetch the data on initial load
     this.$store.dispatch('fetchData');
+  },
+  methods: {
+    handleItemFilter(event) {
+      const el = event.target;
+      const criteria = el.dataset.attr;
+      // trigger sorting vuex action
+      this.$store.dispatch('sortByAttribute', criteria);
+      event.preventDefault();
+    },
+    updateActiveSortTrigger(index) {
+      this.activeSortTrigger = index;
+      this.handleItemFilter(event);
+    },
   },
 };
 </script>

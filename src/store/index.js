@@ -11,23 +11,35 @@ export default new Vuex.Store({
     searchQuery: '',
   },
   getters: {
-    searchQuery: state => state.searchQuery,
+    searchQuery: (state) => state.searchQuery,
   },
   mutations: {
     updateSearchQuery(state, payload) {
       state.searchQuery = payload;
     },
     fetchItems(state, items) {
-      state.items = items;
+      state.items = items.sort();
     },
   },
   actions: {
     fetchData({ commit }) {
-      Vue.http
-        .get('../api/data.json')
-        .then(res => res.json())
-        .then(data => commit('fetchItems', data))
-        .catch(err => console.log(err));
+      const api = '../api/data.json';
+      return new Promise((resolve, reject) => {
+        Vue.http
+          .get(api)
+          .then((res) => {
+            commit('fetchItems', res.body);
+            resolve();
+          })
+          .catch((err) => {
+            console.log(err.statusText);
+          });
+      });
+    },
+    sortByAttribute({ commit }, criteria) {
+      // this is kept generic so we don't have
+      // to make new actions for each attribute filter
+      console.log(`Filtered by: ${criteria}`);
     },
   },
 });

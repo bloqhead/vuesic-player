@@ -15,7 +15,7 @@
       </header>
       <div class="playlist__content">
         <ul>
-          <li :key="index" v-for="(item, index) in this.$store.state.items">
+          <li :key="index" v-for="(item, index) in filterListBySearchQuery">
             <ul class="playlist__item-details">
               <li>{{item.title}}</li>
               <li>{{item.artist}}</li>
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -40,9 +42,8 @@ export default {
       activeSortTrigger: null,
     };
   },
-  created() {
-    // fetch the data on initial load
-    this.$store.dispatch('fetchData');
+  computed: {
+    ...mapGetters(['filterListBySearchQuery']),
   },
   methods: {
     handleItemFilter(event) {

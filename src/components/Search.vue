@@ -2,6 +2,7 @@
   <div class="search">
     <form class="search__form" @submit.prevent>
       <input
+        v-model="searchQuery"
         type="search"
         class="search__field"
         placeholder="Search Your Library"
@@ -15,12 +16,16 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      searchQuery: '',
+    };
   },
+  computed: {},
   methods: {
     submitQuery(event) {
+      const query = event.target.value;
       // update the search query in the state so we can access it elsewhere
-      this.$store.commit('updateSearchQuery', event.target.value);
+      this.$store.commit('updateSearchQuery', query);
     },
   },
 };

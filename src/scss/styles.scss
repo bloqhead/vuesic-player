@@ -1,12 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap');
 
 // Vars
 
-$crimson: #dc143c;
-$aqua: aquamarine;
-$grey: #999;
-$smoke: #eee;
-$smoke-light: rgb(245, 245, 245);
+$max-app-width: 80rem;
+$easing-overshoot: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$overpass: 'Overpass Mono', monospace;
+$teal: #07eff3;
+$yellow: #eef46e;
+$red: #d70e2f;
+$lime: #8bd76b;
+$pink: #f54768;
+$grey: #555;
+$darkgrey: #111;
+$white: #fff;
+$black: #000;
 
 // Mixins
 
@@ -25,8 +32,7 @@ $smoke-light: rgb(245, 245, 245);
 
   > * {
     flex: 1;
-    outline: 1px solid #eee;
-    padding: 1rem 2rem;
+    padding: 1.5rem;
   }
 }
 
@@ -37,19 +43,21 @@ $smoke-light: rgb(245, 245, 245);
 
 html {
   font-size: 62.5%;
+  background-color: $black;
+  color: $white;
 }
 
 body {
   font-size: 1.8rem;
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  font-family: $overpass;
   line-height: 1.5;
 }
 
 #app {
   width: 100%;
-  max-width: 60rem;
+  max-width: $max-app-width;
   margin: 0 auto;
+  padding: 2rem;
 }
 
 // Base
@@ -64,7 +72,11 @@ h6 {
 }
 
 a {
-  color: $crimson;
+  color: $lime;
+}
+
+ul {
+  @include plain-list;
 }
 
 // Title Bar
@@ -92,10 +104,13 @@ a {
 .search__field {
   display: block;
   width: 100%;
-  border: 1px solid $smoke;
-  background-color: $smoke-light;
+  border: 2px solid $grey;
+  background-color: $darkgrey;
+  color: $white;
   border-radius: 2rem;
   padding: 2rem;
+  box-shadow: none;
+  outline: 0; // bad accessibility!
 }
 
 // Playlist
@@ -105,46 +120,74 @@ a {
 }
 
 .playlist__header {
-  ul {
-    @include plain-list;
-    @include column-setup;
-  }
+  @include column-setup;
+
   li {
     padding: 0;
   }
   a {
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     padding: 1rem;
     text-decoration: none;
     font-weight: bold;
 
+    &::before {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      content: '';
+      transition: transform 300ms cubic-bezier(0.56, 0.24, 0.2, 0.86);
+      background-color: $teal;
+      transform-origin: center;
+      transform: scaleX(0);
+      border-radius: 1rem 1rem 0 0;
+    }
+
     i {
       margin-left: auto;
+      opacity: 0;
+      will-change: opacity, transform;
+      transition: opacity 250ms ease-in-out,
+        transform 375ms cubic-bezier(0.64, 0.57, 0.67, 1.53);
+      transition-delay: 150ms;
+      transform-origin: center;
+      transform: scale(0);
+      color: $pink;
     }
 
     &.is-active {
-      background-color: $aqua;
+      color: $black;
+
+      &::before {
+        transform: scaleX(1);
+      }
+
+      i {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
   }
 }
 
 .playlist__content {
-  ul {
-    @include plain-list;
+  > li {
+    display: block;
+    overflow: hidden;
+  }
+
+  > li:nth-child(odd) {
+    background-color: $darkgrey;
   }
 }
 
 .playlist__item-details {
   @include column-setup;
-}
-
-// Misc
-
-.instructions {
-  font-size: 1.3rem;
-  color: $grey;
-  margin: 4rem 0 0 0;
-  padding: 2rem 0 0 0;
-  border-top: 1px solid $smoke;
 }

@@ -1,32 +1,28 @@
 <template>
   <div class="playlist">
     <div class="playlist__items">
-      <header class="playlist__header">
-        <ul>
-          <li :key="index" v-for="(item, index) in sortTriggers">
-            <a
-              href="#"
-              :data-attr="item.slug"
-              :class="{ 'is-active': getActiveSortTrigger === index }"
-              @click="updateActiveSortTrigger(index)"
-            >
-              {{item.label}}
-              <i v-if="getActiveSortTrigger === index" class="fa fa-check-circle"></i>
-            </a>
-          </li>
-        </ul>
-      </header>
-      <div class="playlist__content">
-        <ul>
-          <li :key="index" v-for="(item, index) in filterListBySearchQuery">
-            <ul class="playlist__item-details">
-              <li>{{item.title}}</li>
-              <li>{{item.artist}}</li>
-              <li>{{item.album}}</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+      <ul class="playlist__header">
+        <li :key="index" v-for="(item, index) in sortTriggers">
+          <a
+            href="#"
+            :data-attr="item.slug"
+            :class="{ 'is-active': getActiveSortTrigger === index }"
+            @click="updateActiveSortTrigger(index)"
+          >
+            {{item.label}}
+            <i class="fa fa-check-circle"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="playlist__content">
+        <li :key="index" v-for="(item, index) in filterListBySearchQuery">
+          <ul class="playlist__item-details">
+            <li>{{item.title}}</li>
+            <li>{{item.artist}}</li>
+            <li>{{item.album}}</li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

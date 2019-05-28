@@ -2,10 +2,9 @@
   <div class="search">
     <form class="search__form" @submit.prevent>
       <input
-        v-model="searchQuery"
         type="search"
         class="search__field"
-        placeholder="Search Your Library"
+        placeholder="Search by title..."
         @keyup="submitQuery"
       >
       <p v-if="this.$store.state.searchQuery">Filtered by: {{this.$store.state.searchQuery}}</p>
@@ -15,12 +14,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      searchQuery: '',
-    };
-  },
-  computed: {},
   methods: {
     submitQuery(event) {
       const query = event.target.value;

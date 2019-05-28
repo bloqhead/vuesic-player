@@ -7,7 +7,7 @@
             <a
               href="#"
               :data-attr="item.slug"
-              :class="{ 'is-active': activeSortTrigger === index }"
+              :class="{ 'is-active': getActiveSortTrigger === index }"
               @click="updateActiveSortTrigger(index)"
             >{{item.label}}</a>
           </li>
@@ -39,23 +39,24 @@ export default {
         { label: 'Artist', slug: 'artist' },
         { label: 'Album', slug: 'album' },
       ],
-      activeSortTrigger: null,
     };
   },
+  watch: {},
   computed: {
-    ...mapGetters(['filterListBySearchQuery']),
+    ...mapGetters([
+      'filterListBySearchQuery',
+      'sortListByAttribute',
+      'getActiveSortTrigger',
+    ]),
   },
   methods: {
-    handleItemFilter(event) {
+    updateActiveSortTrigger(index) {
       const el = event.target;
       const criteria = el.dataset.attr;
-      // trigger sorting vuex action
-      this.$store.dispatch('sortByAttribute', criteria);
+      this.$store.commit('updateSortCriteria', criteria);
+      this.$store.commit('updateSortTrigger', index);
+      this.$store.getters.sortListByAttribute(criteria);
       event.preventDefault();
-    },
-    updateActiveSortTrigger(index) {
-      this.activeSortTrigger = index;
-      this.handleItemFilter(event);
     },
   },
 };

@@ -13,12 +13,6 @@ import Playlist from './components/Playlist';
 
 export default {
   name: 'app',
-  data() {
-    return {
-      searchQuery: '',
-    };
-  },
-  computed: {},
   components: {
     TitleBar,
     Search,

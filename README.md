@@ -14,6 +14,15 @@ yarn run serve
 
 ---
 
+## Built With...
+
+- A basic VueJS project spun up via the Vue CLI 3.0 tool
+- Vuex for state management
+- Vanilla SCSS for basic styling
+- 3 Vue components
+
+[View online](https://vuesic-player.bloqhead.now.sh/)
+
 ## Caveats / Tradeoffs
 
 - I was originally fetching a mock API (just a local JSON file) but found it was quicker for this exercise to work with hard-coded data in the store file.
@@ -23,7 +32,4 @@ yarn run serve
 ## Next Steps / Wants
 
 - It would be great to turn this into a full-fledged player with a Controls component. For this demonstration, I simplified things.
-
-## Fancy Branch
-
-The fancy branch is for the fun stuff. This is where the app is more polished and styled to be more visually appealing and music library app-esque. The master branch is primarily for demonstrating the core functionality of the app.
+- Add a function for resetting the sort ordering

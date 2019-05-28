@@ -1,4 +1,12 @@
-// Mixins
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap');
+
+// Vars
+
+$crimson: #dc143c;
+$aqua: aquamarine;
+$grey: #999;
+$smoke: #eee;
+$smoke-light: rgb(245, 245, 245);
 
 // Mixins
 
@@ -25,17 +33,21 @@
 // App
 
 :root {
+}
+
+html {
   font-size: 62.5%;
 }
 
 body {
   font-size: 1.8rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
 }
 
 #app {
+  width: 100%;
   max-width: 60rem;
   margin: 0 auto;
 }
@@ -51,14 +63,21 @@ h6 {
   font-weight: normal;
 }
 
+a {
+  color: $crimson;
+}
+
 // Title Bar
 
 .titlebar {
   text-align: center;
 
   h1 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    font-weight: 700;
     text-transform: uppercase;
+    color: $grey;
+    letter-spacing: 0.25rem;
   }
 }
 
@@ -73,9 +92,9 @@ h6 {
 .search__field {
   display: block;
   width: 100%;
-  border: 1px solid #eee;
-  background-color: rgb(245, 245, 245);
-  border-radius: 0;
+  border: 1px solid $smoke;
+  background-color: $smoke-light;
+  border-radius: 2rem;
   padding: 2rem;
 }
 
@@ -94,17 +113,18 @@ h6 {
     padding: 0;
   }
   a {
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 1rem;
     text-decoration: none;
     font-weight: bold;
 
-    &.is-active {
-      background-color: aquamarine;
+    i {
+      margin-left: auto;
+    }
 
-      &::after {
-        content: ' ✅'; // lol
-      }
+    &.is-active {
+      background-color: $aqua;
     }
   }
 }
@@ -117,4 +137,14 @@ h6 {
 
 .playlist__item-details {
   @include column-setup;
+}
+
+// Misc
+
+.instructions {
+  font-size: 1.3rem;
+  color: $grey;
+  margin: 4rem 0 0 0;
+  padding: 2rem 0 0 0;
+  border-top: 1px solid $smoke;
 }

@@ -9,7 +9,10 @@
               :data-attr="item.slug"
               :class="{ 'is-active': getActiveSortTrigger === index }"
               @click="updateActiveSortTrigger(index)"
-            >{{item.label}}</a>
+            >
+              {{item.label}}
+              <i v-if="getActiveSortTrigger === index" class="fa fa-check-circle"></i>
+            </a>
           </li>
         </ul>
       </header>

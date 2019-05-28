@@ -61,56 +61,6 @@ export default new Vuex.Store({
         artist: 'The HU',
         album: 'Wolf Totem',
       },
-      {
-        title: 'Up the Cuts',
-        artist: 'Against Me!',
-        album: 'New Wave',
-      },
-      {
-        title: 'Bunny Room',
-        artist: 'Soft Kill',
-        album: 'Savior',
-      },
-      {
-        title: 'Memories of Green',
-        artist: 'Vangelis',
-        album: 'Blade Runner',
-      },
-      {
-        title: 'Victory Lap',
-        artist: 'Propagandhi',
-        album: 'Victory Lap',
-      },
-      {
-        title: 'Shook Ones, Pt. II',
-        artist: 'Mobb Deep',
-        album: 'The Infamous',
-      },
-      {
-        title: 'All Star',
-        artist: 'Smash Mouth',
-        album: 'Astro Lounge',
-      },
-      {
-        title: 'Quiet Light',
-        artist: 'The National',
-        album: 'I Am Easy to Find',
-      },
-      {
-        title: 'Back to You',
-        artist: 'Timecop1983',
-        album: 'Night Drive',
-      },
-      {
-        title: "'Merican",
-        artist: 'Descendents',
-        album: 'Cool to Be You',
-      },
-      {
-        title: 'Wolf Totem',
-        artist: 'The HU',
-        album: 'Wolf Totem',
-      },
     ],
     searchQuery: '',
     activeSortTrigger: '',
@@ -137,9 +87,9 @@ export default new Vuex.Store({
       if (!criteria) return;
       const items = state.items;
       const query = criteria.toLowerCase();
-      const newItemArray = items.sort((a, b) => {
-        var item1 = a[criteria].toLowerCase();
-        var item2 = b[criteria].toLowerCase();
+      items.sort((a, b) => {
+        const item1 = a[query].toLowerCase();
+        const item2 = b[query].toLowerCase();
         if (item1 < item2) return -1;
         if (item1 > item2) return 1;
         return 0;

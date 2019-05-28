@@ -7,7 +7,6 @@
         placeholder="Search by title..."
         @keyup="submitQuery"
       >
-      <p v-if="this.$store.state.searchQuery">Filtered by: {{this.$store.state.searchQuery}}</p>
     </form>
   </div>
 </template>

@@ -1,0 +1,94 @@
+// Controls
+
+$control-secondary-font-size: 3.2rem;
+$control-primary-font-size: 4.8rem;
+$control-bg-static: $darkgrey;
+$control-text-color-static: $pink;
+$control-text-color-hover: $lime;
+$control-item-dimensions: 3.6rem;
+$control-padding: 1rem;
+$control-margin: 0 1rem;
+$control-radius: 2rem;
+$control-cluster-margin: 2rem auto;
+$control-timestamp-margin: 0 1rem;
+$control-timestamp-font-size: 1.4rem;
+$control-bg-gradient: linear-gradient(to bottom, $darkgrey, $black);
+$control-scrubber-padding: 1rem;
+$control-scrubber-radius: 1rem;
+$control-easing: cubic-bezier(0.32, 0.11, 0.22, 0.81);
+
+.controls {
+  text-align: center;
+  margin: $control-cluster-margin;
+}
+
+.controls__cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: $control-cluster-margin;
+}
+
+.controls__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: $control-bg-gradient;
+  border-radius: $control-radius;
+  width: $control-item-dimensions;
+  height: $control-item-dimensions;
+  line-height: $control-item-dimensions;
+  text-decoration: none;
+  padding: $control-padding;
+  margin: $control-margin;
+  color: $control-text-color-static;
+  will-change: transform;
+  transition: color 250ms $control-easing, transform 250ms $control-easing;
+
+  &:hover {
+    color: $control-text-color-hover;
+    transform: scale(1.15);
+  }
+}
+
+.controls__item--prev,
+.controls__item--next {
+  border-radius: calc(#{$control-radius} / 2);
+}
+
+.controls__item--prev {
+  font-size: $control-secondary-font-size;
+}
+
+.controls__item--next {
+  font-size: $control-secondary-font-size;
+}
+
+.controls__item--play {
+  $i: calc(#{$control-item-dimensions} * 2);
+  font-size: $control-primary-font-size;
+  width: $i;
+  height: $i;
+  line-height: $i;
+}
+
+.controls__scrubber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $control-scrubber-padding;
+  background: $control-bg-gradient;
+  border-radius: $control-scrubber-radius;
+
+  input[type='range'] {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.controls__timestamp {
+  display: block;
+  margin: $control-timestamp-margin;
+  font-size: $control-timestamp-font-size;
+}

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "vuesic-player",
+  "name": "vuesic-player-fancy",
   "builds": [
     {
       "src": "package.json",

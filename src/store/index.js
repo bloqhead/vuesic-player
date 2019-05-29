@@ -65,6 +65,8 @@ export default new Vuex.Store({
     searchQuery: '',
     activeSortTrigger: '',
     activeSortValue: '',
+    playState: 'paused',
+    currentTrack: '',
   },
   getters: {
     getSortTriggers: (state) => state.sortTriggers,

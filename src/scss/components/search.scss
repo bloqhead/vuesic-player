@@ -1,0 +1,19 @@
+// Search
+
+.search {
+}
+
+.search__form {
+}
+
+.search__field {
+  display: block;
+  width: 100%;
+  border: 2px solid $grey;
+  background-color: $darkgrey;
+  color: $white;
+  border-radius: 2rem;
+  padding: 2rem;
+  box-shadow: none;
+  outline: 0; // bad accessibility!
+}

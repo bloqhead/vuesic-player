@@ -1,0 +1,85 @@
+/*
+  Custom range styles
+  http://danielstern.ca/range.css/
+ */
+
+@mixin range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  box-shadow: none;
+  background: #f54768;
+  border: 0;
+}
+
+@mixin range-thumb {
+  box-shadow: none;
+  border: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 100px;
+  background: rgba(139, 215, 107, 1);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+  width: auto;
+  margin: 0;
+  background: none;
+}
+
+input[type='range']:focus {
+  outline: none;
+}
+
+input[type='range']::-moz-range-track,
+input[type='range']::-webkit-slider-runnable-track {
+  @include range-track;
+}
+
+input[type='range']::-moz-range-thumb,
+input[type='range']::-webkit-slider-thumb {
+  @include range-thumb;
+}
+
+input[type='range']::-ms-thumb {
+  @include range-thumb;
+}
+
+input[type='range']:focus::-webkit-slider-runnable-track {
+  background: #f65f7c;
+}
+
+input[type='range']::-ms-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type='range']::-ms-fill-lower {
+  background: #f42f54;
+  border: 0;
+  border-radius: 50px;
+  box-shadow: none;
+}
+
+input[type='range']::-ms-fill-upper {
+  background: #f54768;
+  border: 0;
+  border-radius: 50px;
+  box-shadow: none;
+}
+
+input[type='range']:focus::-ms-fill-lower {
+  background: #f54768;
+}
+
+input[type='range']:focus::-ms-fill-upper {
+  background: #f65f7c;
+}

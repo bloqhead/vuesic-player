@@ -99,14 +99,10 @@ export default new Vuex.Store({
       );
     },
     sortListByAttribute: (state) => (criteria) => {
-      if (!criteria) return;
-      const items = state.items;
       const query = criteria.toLowerCase();
-      items.sort((a, b) => {
-        if (a[query] < b[query]) return -1;
-        if (a[query] > b[query]) return 1;
-        return 0;
-      });
+      state.items.sort((a, b) =>
+        a[query] < b[query] ? -1 : a[query] > b[query] ? 1 : 0
+      );
     },
   },
   actions: {},

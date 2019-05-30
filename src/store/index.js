@@ -15,51 +15,71 @@ export default new Vuex.Store({
         title: 'Up the Cuts',
         artist: 'Against Me!',
         album: 'New Wave',
+        file: '',
+        cover: '',
       },
       {
         title: 'Bunny Room',
         artist: 'Soft Kill',
         album: 'Savior',
+        file: '',
+        cover: '',
       },
       {
         title: 'Memories of Green',
         artist: 'Vangelis',
         album: 'Blade Runner',
+        file: '',
+        cover: '',
       },
       {
         title: 'Victory Lap',
         artist: 'Propagandhi',
         album: 'Victory Lap',
+        file: '',
+        cover: '',
       },
       {
         title: 'Shook Ones, Pt. II',
         artist: 'Mobb Deep',
         album: 'The Infamous',
+        file: '',
+        cover: '',
       },
       {
         title: 'All Star',
         artist: 'Smash Mouth',
         album: 'Astro Lounge',
+        file: '',
+        cover: '',
       },
       {
         title: 'Quiet Light',
         artist: 'The National',
         album: 'I Am Easy to Find',
+        file: '',
+        cover: '',
       },
       {
         title: 'Back to You',
         artist: 'Timecop1983',
         album: 'Night Drive',
+        file: '',
+        cover: '',
       },
       {
         title: "'Merican",
         artist: 'Descendents',
         album: 'Cool to Be You',
+        file: '',
+        cover: '',
       },
       {
         title: 'Wolf Totem',
         artist: 'The HU',
         album: 'Wolf Totem',
+        file: '',
+        cover: '',
       },
     ],
     searchQuery: '',
@@ -73,17 +93,10 @@ export default new Vuex.Store({
     getActiveSortTrigger: (state) => state.activeSortTrigger,
     searchQuery: (state) => state.searchQuery,
     filterListBySearchQuery: (state) => {
-      // this only searched by title right now
-      // but could easily be expanded to be more generic
-      // (maybe a <select> for modifying what to search by)
       const query = state.searchQuery.trim().toLowerCase();
-      const items = state.items;
-      if (!query.length) return items;
-      return items.filter((item) => {
-        if (item.title.toLowerCase().indexOf(query) > -1) {
-          return items;
-        }
-      });
+      return state.items.filter(
+        (item) => item.title.toLowerCase().indexOf(query) > -1
+      );
     },
     sortListByAttribute: (state) => (criteria) => {
       if (!criteria) return;

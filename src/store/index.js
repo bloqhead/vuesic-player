@@ -103,10 +103,8 @@ export default new Vuex.Store({
       const items = state.items;
       const query = criteria.toLowerCase();
       items.sort((a, b) => {
-        const item1 = a[query].toLowerCase();
-        const item2 = b[query].toLowerCase();
-        if (item1 < item2) return -1;
-        if (item1 > item2) return 1;
+        if (a[query] < b[query]) return -1;
+        if (a[query] > b[query]) return 1;
         return 0;
       });
     },
